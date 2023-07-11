@@ -1,1 +1,0 @@
-console.log("Ini adalah version 2");

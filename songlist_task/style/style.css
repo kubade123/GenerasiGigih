@@ -41,7 +41,7 @@ footer {
     margin: auto;
 }
 footer div{
-    display: inline-block;
+    display: block;
     text-align: center;
 }
 ul li {
