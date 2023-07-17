@@ -1,0 +1,3 @@
+songs = [];
+
+module.exports = songs;

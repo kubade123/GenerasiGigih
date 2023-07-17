@@ -1,0 +1,20 @@
+const { express } = require('../../app');
+const router = express.Router();
+const {addSongHandler,getAllSongsHandler, playSongHandler} = require('../controllers/handler');
+const songs = require('../models/songs');
+
+router.get('/songs',  (req, res) => {
+    if(JSON.stringify(req.query) === "{}"){
+        getAllSongsHandler(req, res);
+    }
+    else {
+        playSongHandler(req, res);
+    }
+});
+
+router.post('/songs',  (req, res) => {
+    console.log(req.body);
+    addSongHandler(req, res);
+});
+
+module.exports = router;
