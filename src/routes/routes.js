@@ -4,7 +4,7 @@ const {addSongHandler,getAllSongsHandler, playSongHandler} = require('../control
 const songs = require('../models/songs');
 
 router.get('/songs',  (req, res) => {
-    if(JSON.stringify(req.query) === "{}"){
+    if(JSON.stringify(req.query) === "{}"|| req.query.sortKey){
         getAllSongsHandler(req, res);
     }
     else {
