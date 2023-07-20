@@ -13,7 +13,6 @@ router.get('/songs',  (req, res) => {
 });
 
 router.post('/songs',  (req, res) => {
-    console.log(req.body);
     addSongHandler(req, res);
 });
 

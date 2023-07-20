@@ -1,23 +1,22 @@
-const {nanoid} = require('nanoid');
 const songs = require('../models/songs');
+const {addMultilpeSongs, addSingleSong} = require('../services/service');
 
 
 
 const addSongHandler = (req, res) => {
     const { title, artist, url } = req.body;
-
-    const id = nanoid(16);
-    let playCount = 0;
-
-    const newSong = {
-        id,
-        title,
-        artist,
-        playCount,
-        url 
+    
+    if(req.body.length > 1) {
+        addMultilpeSongs(req, res);
+        res.status(200).json({
+            status: "success",
+            message: 'Berhasil menambahkan lagu',
+            data: req.body,
+        })
+        return res;
     }
-
-    if(newSong) {
+    
+    if(req.body) {
         if (!title) {
             res.status(400).json({
                 status: "fail",
@@ -25,16 +24,15 @@ const addSongHandler = (req, res) => {
             });
             return res;
         }
-        songs.push(newSong);
+
+        addSingleSong(req, res);
         res.status(200).json({
             status: "success",
             message: 'Berhasil menambahkan lagu',
-            data: newSong,
+            data: req.body,
         })
         return res;
     }
-    res.status(200).send("ok")
-    return res;
 }
 
 const getAllSongsHandler = (req, res) => {
